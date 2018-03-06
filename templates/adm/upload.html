@@ -1,0 +1,22 @@
+
+
+{% load static %}
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="myfile">
+    <button type="submit">Upload</button>
+  </form>
+
+ {% if errors %}
+{% for error in errors %}
+{{error}}
+<br>
+{% endfor %}
+{% endif %}
+
+{% if successes %}
+    <p>{{ successes }}</a></p>
+  {% endif %}
+
+  <p><a href="{% url 'adm:users' %}">Return to home</a></p>

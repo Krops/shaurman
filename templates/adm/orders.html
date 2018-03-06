@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+</head>
+<body>
+Orders
+<br>
+{% for order in orders.all %}
+{{ order.user }} {{ order.product }} {{ order.amount }} {{ order.date }}
+<br>
+{% endfor %}
+</body>
+</html>

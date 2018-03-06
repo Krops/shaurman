@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+Products
+<br>
+{% for product in products.all %}
+{{ product.title }} {{ product.restaurant }} {{ product.price }}
+<br>
+{% endfor %}
+</body>
+</html>
