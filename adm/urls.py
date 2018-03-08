@@ -20,7 +20,10 @@ app_name = 'adm'
 
 urlpatterns = [
     url(r'^users/$', views.users, name="users"),
-    url(r'^products/$', views.products, name="admin_products"),
+    url(r'^user/(?P<pk>\d+)/$', views.UserDeleteView.as_view(), name="user_delete"),
+    url(r'^products/$', views.ProductView.as_view(), name="admin_products"),
     url(r'^orders/$', views.orders, name="admin_orders"),
+    url(r'^order/(?P<pk>\d+)/$', views.OrderDeleteView.as_view(), name="order_delete"),
     url(r'^import/$', views.upload, name="import"),
+    url(r'^product/(?P<pk>\d+)/$', views.ProductDeleteView.as_view(), name="product_delete"),
 ]

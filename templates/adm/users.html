@@ -1,15 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'admin_base.html' %}
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <title>Users</title>
 </head>
 <body>
-
-Users
-<br>
-{% for usr in users.all %}
-{{ usr.username }} <br>
-{% endfor %}
+<h1>Users</h1>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col">Username</div>
+        <div class="col">First Name</div>
+        <div class="col">Last Name</div>
+        <div class="col">Email</div>
+        <div class="col">
+            Delete User
+        </div>
+    </div>
+    <hr>
+    {% for usr in users.all %}
+    <div class="row">
+        <div class="col">{{ usr.username }}</div>
+        <div class="col">{{ usr.first_name }}</div>
+        <div class="col">{{ usr.last_name }}</div>
+        <div class="col">{{ usr.email }}</div>
+        <div class="col">
+            <form action="{% url 'adm:user_delete' usr.pk %}" method="POST">
+                {% csrf_token %}
+                <input class="btn btn-outline-danger" type="submit" value="x"/>
+            </form>
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+</div>
 </body>
-</html>
+{% endblock %}

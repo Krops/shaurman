@@ -1,15 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <title>Products</title>
 </head>
 <body>
-Products
-<br>
+<h1>Products</h1>
+<hr>
+<div class="container">
+<div class="row">
+        <div class="col">
+            Title:
+        </div>
+        <div class="col">
+            Restaurant:
+        </div>
+        <div class="col">
+            Price:
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <hr>
 {% for product in products.all %}
-{{ product.title }} {{ product.restaurant }} {{ product.price }}
-<br>
+<div class="row">
+        <div class="col">
+            {{ product.title }}
+        </div>
+        <div class="col">
+            {{ product.restaurant }}
+        </div>
+        <div class="col">
+            {{ product.price }}
+        </div>
+        <div class="col">
+            <form action="{% url 'front:add_order' product.pk 1 %}" method="POST">{% csrf_token %} <input class="btn btn-outline-success" type="submit" value="+"/> </form>
+        </div>
+    </div>
+<hr>
 {% endfor %}
+    </div>
 </body>
-</html>
+{% endblock %}

@@ -1,15 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'admin_base.html' %}
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <title>Orders</title>
 </head>
 <body>
-Orders
-<br>
+<h1>Orders</h1>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col">User</div>
+        <div class="col">Product</div>
+        <div class="col">Amount</div>
+        <div class="col">Date</div>
+        <div class="col">Delete</div>
+    </div>
+    <hr>
 {% for order in orders.all %}
-{{ order.user }} {{ order.product }} {{ order.amount }} {{ order.date }}
-<br>
+    <div class="row">
+        <div class="col">{{ order.user }}</div>
+        <div class="col">{{ order.product }}</div>
+        <div class="col">{{ order.amount }}</div>
+        <div class="col">{{ order.date }}</div>
+        <div class="col"><form action="{% url 'adm:order_delete' order.pk %}" method="POST">{% csrf_token %} <input class="btn btn-outline-danger" type="submit" value="x"/> </form></div>
+    </div>
+    <hr>
 {% endfor %}
+    </div>
 </body>
-</html>
+{% endblock %}

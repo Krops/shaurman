@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('adm/', include('adm.urls')),
     url('user/', include('front.urls')),
-    url(r'^products/$', front_view.products, name="products"),
+    url('', front_view.products, name="products"),
 ]

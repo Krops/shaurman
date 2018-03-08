@@ -20,4 +20,7 @@ app_name = 'front'
 
 urlpatterns = [
     url(r'^order/$', views.order, name="order"),
+    url(r'^add/(?P<pk>\d+)/(?P<amount>\d+)/$', views.add_order, name="add_order"),
+    url(r'login/$', views.signin, name='login'),
+    url(r'logout/$', views.logout_view, name='logout'),
 ]

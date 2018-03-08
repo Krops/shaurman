@@ -1,22 +1,37 @@
-
-
+{% extends 'admin_base.html' %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Import Users</title>
+</head>
+<body>
+<h1>Import Users</h1>
+<hr>
 {% load static %}
 
-  <form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <input type="file" name="myfile">
-    <button type="submit">Upload</button>
-  </form>
-
- {% if errors %}
-{% for error in errors %}
-{{error}}
-<br>
-{% endfor %}
+    <input class="btn btn-primary" type="file" name="myfile">
+    <button class="btn btn-primary" type="submit">Upload</button>
+</form>
+<hr>
+{% if errors %}
+<div class="container">
+    {% for error in errors %}
+    <div class="row">
+        {{error}}
+    </div>
+    <hr>
+    {% endfor %}
+</div>
 {% endif %}
 
 {% if successes %}
-    <p>{{ successes }}</a></p>
-  {% endif %}
+<p>{{ successes }}</p>
+<hr>
+{% endif %}
 
-  <p><a href="{% url 'adm:users' %}">Return to home</a></p>
+<p><a href="{% url 'adm:users' %}">Return to home</a></p>
+<hr>
+</body>
+{% endblock %}

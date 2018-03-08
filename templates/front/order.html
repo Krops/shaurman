@@ -1,15 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <title>Orders</title>
 </head>
 <body>
-Orders
-<br>
+<h1>Orders</h1>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col">Product</div>
+        <div class="col">Amount</div>
+        <div class="col">Date</div>
+    </div>
+    <hr>
 {% for order in orders.all %}
-{{ order.user }} {{ order.product }} {{ order.amount }} {{ order.date }}
-<br>
+    <div class="row">
+        <div class="col">{{ order.product }}</div>
+        <div class="col">{{ order.amount }}</div>
+        <div class="col">{{ order.date }}</div>
+    </div>
+    <hr>
 {% endfor %}
-</body>
-</html>
+    </div>
+{% endblock %}
