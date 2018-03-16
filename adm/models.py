@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+from djmoney.models.fields import MoneyField
 
 
 class Product(models.Model):
     title = models.CharField(max_length=200)
     restaurant = models.CharField(max_length=200)
-    price = models.IntegerField()
+    price = MoneyField(max_digits=10, decimal_places=2, default_currency='UAH')
 
     def __str__(self):
         return self.title

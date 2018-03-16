@@ -15,15 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 from adm import views
+from django.contrib.auth.decorators import login_required
 
 app_name = 'adm'
 
 urlpatterns = [
-    url(r'^users/$', views.users, name="users"),
-    url(r'^user/(?P<pk>\d+)/$', views.UserDeleteView.as_view(), name="user_delete"),
-    url(r'^products/$', views.ProductView.as_view(), name="admin_products"),
-    url(r'^orders/$', views.orders, name="admin_orders"),
-    url(r'^order/(?P<pk>\d+)/$', views.OrderDeleteView.as_view(), name="order_delete"),
-    url(r'^import/$', views.upload, name="import"),
-    url(r'^product/(?P<pk>\d+)/$', views.ProductDeleteView.as_view(), name="product_delete"),
+    url(r'^users/?$', login_required(views.users), name="users"),
+    url(r'^user/(?P<pk>\d+)/?$', login_required(views.UserDeleteView.as_view()), name="user_delete"),
+    url(r'^products/?$', login_required(views.ProductView.as_view()), name="admin_products"),
+    url(r'^orders/?$', login_required(views.orders), name="admin_orders"),
+    url(r'^order/(?P<pk>\d+)/?$', login_required(views.OrderDeleteView.as_view()), name="order_delete"),
+    url(r'^import/?$', login_required(views.upload), name="import"),
+    url(r'^product/(?P<pk>\d+)/?$', login_required(views.ProductDeleteView.as_view()), name="product_delete"),
 ]

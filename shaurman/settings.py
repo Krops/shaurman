@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'adm',
     'front',
+    'djmoney',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,30 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 LOGIN_URL = '/user/login/'
+
+import moneyed
+from moneyed.localization import _FORMATTER
+from decimal import ROUND_HALF_EVEN
+
+
+UAH = moneyed.add_currency(
+    code='UAH',
+    numeric='068',
+    name='Украинская гривна',
+    countries=('UKRAINE', )
+)
+
+# Currency Formatter will output 2.000,00 Bs.
+_FORMATTER.add_sign_definition(
+    'default',
+    UAH,
+    prefix=u'грв. '
+)
+
+_FORMATTER.add_formatting_definition(
+    'ua_UA',
+    group_size=3, group_separator=".", decimal_point=",",
+    positive_sign="",  trailing_positive_sign="",
+    negative_sign="-", trailing_negative_sign="",
+    rounding_method=ROUND_HALF_EVEN
+)
